@@ -25,11 +25,15 @@ class UserLoginView(LoginView):
     def get_success_url(self):
         return reverse_lazy('home')
 
-class UserLogoutView(LogoutView):
-    def get_success_url(self):
-        if self.request.user.is_authenticated:
-            logout(self.request)
-        return reverse_lazy('home')
+# class UserLogoutView(LogoutView):
+#     def get_success_url(self):
+#         if self.request.user.is_authenticated:
+#             logout(self.request)
+#         return reverse_lazy('home')
+
+def user_logout(request):
+    logout(request)  # Logs out the user
+    return redirect('home') 
     
 class UserBankAccountUpdateView(View):
     template_name = 'accounts/profile.html'
